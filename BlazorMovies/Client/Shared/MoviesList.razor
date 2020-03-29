@@ -8,9 +8,10 @@ else if (Movies.Count == 0)
 }
 else
 {
+    <input type="checkbox" @bind="@displayButton"/>
     @foreach (var movie in Movies)
     {
-        <IndividualMovie Movie="movie"/>
+        <IndividualMovie Movie="movie" DisplayButton="@displayButton" DeleteMovie="DeleteMovie"/>
 
     }
 }
@@ -18,4 +19,11 @@ else
 @code {
 
     [Parameter] public List<Movie> Movies { get; set; }
+
+    bool displayButton = false;
+
+    private void DeleteMovie(Movie movie) {
+
+        Movies.Remove(movie);
+    }
 }
