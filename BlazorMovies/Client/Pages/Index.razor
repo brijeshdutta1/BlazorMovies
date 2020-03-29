@@ -4,23 +4,32 @@
 
 <div>
     <h3>Movie</h3>
-    <MoviesList Movies="movies"/>
+    <MoviesList Movies="movies">
+        <NullTemplate>
+            This is Loading
+        </NullTemplate>
+        <EmptyTemplate>
+            No Records found...
+        </EmptyTemplate>
+    </MoviesList>
+        @*<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />*@
+
 </div>
 @code{
 
-        private List<Movie> movies;
+    private List<Movie> movies;
 
-        protected override void OnInitialized()
-        {
-            movies =new List<Movie>();
-            for (int i = 0; i <= 4; i++)
-            {
+    protected override void OnInitialized()
+    {
+        movies =new List<Movie>();
+        //for (int i = 0; i <= 4; i++)
+        //{
 
 
-                Movie movie = new Movie();
-                movie.Title = "Movie " + i;
-                movie.ReleaseDate = DateTime.Now;
-                movies.Add(movie);
-            }
-        }
+        //    Movie movie = new Movie();
+        //    movie.Title = "Movie " + i;
+        //    movie.ReleaseDate = DateTime.Now;
+        //    movies.Add(movie);
+        //}
+    }
 }
