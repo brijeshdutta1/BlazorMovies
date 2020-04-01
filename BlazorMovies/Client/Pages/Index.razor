@@ -1,34 +1,27 @@
 ﻿@page "/"
-
+@inject SingletonService singletion
+@inject Helpers.IRepository repository
 <h1>Hello, world!</h1>
-
+<p>SingleTon  count: @singletion.Value</p>
 <div>
     <h3>Movie</h3>
     <MoviesList Movies="movies" />
-        @*<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />*@
+    @*<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />*@
 
 </div>
-<button @onclick ="AddNewMovie">Add new movie</button>
+<button @onclick="AddNewMovie">Add new movie</button>
 @code{
 
     private List<Movie> movies;
 
-    protected  override void OnInitialized()
+    protected override void OnInitialized()
     {
         //await Task.Delay(2000);
-        movies =new List<Movie>();
-        for (int i = 0; i <= 4; i++)
-        {
-
-
-            Movie movie = new Movie();
-            movie.Title = "Movie " + i;
-            movie.ReleaseDate = DateTime.Now;
-            movies.Add(movie);
-        }
+        movies = repository.GetMovies();
     }
 
-    private void AddNewMovie() {
+    private void AddNewMovie()
+    {
 
         movies.Add(new Movie() { Title = "Movie Sample", ReleaseDate = DateTime.Today });
     }
